@@ -1,0 +1,1570 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>You might not need a CSS preprocessor</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+    <link rel="stylesheet" href="css/custom.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section data-background="img/bg/triangles.svg" data-background-color="green">
+            <h2>You might not need a <br> CSS preprocessor</h2>
+            <img src="img/logo.png" alt="" class="img-reset"/>
+
+            <div style="display: flex; align-items: center;">
+                <div>
+                    <a href="http://topconf.com/tallinn-2016/">
+                        <img style="height: 160px;" src="img/topconf.png" alt="" class="img-reset"/>
+                    </a>
+                </div>
+                <div style="display: flex; justify-content: flex-end;text-align: right; flex-grow: 1;">
+                    <p style="margin-right: 30px;">
+                        <a href="https://blog.hospodarets.com/">Serg Hospodarets</a>
+                        <br>
+                        <a href="https://twitter.com/malyw">@malyw</a>
+                    </p>
+                    <div>
+                        <img src="img/avatar.png" style="border-radius: 50%; width: 120px;" alt="">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section>
+            <img src="img/90s.png" class="img-reset" alt="">
+        </section>
+        <section>
+            <h2>
+                <span class="blink">&lt;blink&gt;No CSS&lt;/blink&gt;</span>
+            </h2>
+            <div style="display: flex; position: relative;">
+                <div style="flex-basis: 40%;">
+                    <div>
+                        <a href="http://www.warnerbros.com/archive/spacejam/movie/jam.htm">
+                            <img src="img/spacejam.jpg" style="border-radius: 30px;" alt="">
+                        </a>
+                    </div>
+                    <img style="max-width: 70%;" class="img-reset" src="img/arrow.png" alt="">
+                </div>
+                <div style="flex-basis: 60%;">
+                    <img src="img/spacejam-code.png" class="img-reset" alt="">
+                </div>
+            </div>
+        </section>
+        <section data-background="img/invented.png" data-background-size="10%" data-background-position="0 100%">
+            1996 year - CSS invented
+            <img src="img/timeline1.png" class="img-reset" alt="">
+        </section>
+        <section>
+            <h6>Content and presentation are separated</h6>
+
+            <div class="two-syntaxes">
+                <div><img src="img/bootstrap.png" class="img-reset" alt=""></div>
+                <div class="separator"></div>
+                <div>
+                    <pre><code class="scss hljs" data-trim data-noescape>
+.page-header {
+  /* shorthand */
+  border-bottom: 1px solid #eee;
+}
+					</code></pre>
+                    <pre><code class="scss hljs" data-trim data-noescape>
+p {
+  font-family: Arial; /* font */
+  font-size: 14px; /* font */
+  color: #333; /* color */
+  margin: 10px 0; /* layout */
+}
+					</code></pre>
+                    <pre><code class="scss hljs" data-trim data-noescape>
+.btn-outline {
+  color: #563d7c; /* color */
+  border-color: #563d7c; /* color */
+}
+					</code></pre>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h3>CSS problems</h3>
+            <div class="two-syntaxes">
+                <ul>
+                    <li>Absence of variables</li>
+                    <li>Absence of mixins</li>
+                    <li>Modules</li>
+                </ul>
+                <div class="separator"></div>
+                <ul>
+                    <li>Nested rules are not supported</li>
+                    <li>Code duplication as result</li>
+                </ul>
+            </div>
+            <div style="text-align: center;">
+                <img style="width: 60%;" class="img-reset" src="img/css-play.gif" alt="">
+            </div>
+        </section>
+        <section data-background="img/preprocessors_all.jpg" data-background-size="60%"
+                 data-background-position="50% 100%">
+            <h3>Preprocessors time</h3>
+            <ul>
+
+            </ul>
+            <img src="img/timeline5.png" class="img-reset" alt="">
+        </section>
+        <section data-transition="convex">
+            <h1>Solved by preprocessors</h1>
+        </section>
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            <h1>Sass:</h1>
+            <h3>Variables and Operators (+, -, *, /, %)</h3>
+            <pre><code class="scss hljs" data-trim data-noescape>
+<i>$font-size</i>: 10px;
+<i>$font-family</i>: Helvetica, sans-serif;
+
+body {
+  font: <i>$font-size</i> <i>$font-family</i>;
+}
+
+.mark{
+  font-size: 1.5 * <i>$font-size</i>;
+}
+					</code></pre>
+        </section>
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            <h1>Mixins</h1>
+            <div class="two-syntaxes">
+                <pre><code class="scss hljs" data-trim data-noescape>
+<i>@mixin clearfix</i> {
+  &:after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+}
+
+.sidebar{
+  <i>@include clearfix</i>;
+}
+
+.main{
+  <i>@include clearfix</i>;
+}
+					</code></pre>
+                <div class="separator arrow-right"></div>
+                <pre><code class="css hljs" data-trim data-noescape>
+.sidebar:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.main:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+					</code></pre>
+            </div>
+        </section>
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            <h1>Nesting</h1>
+            <div class="two-syntaxes">
+                <div>
+                    <h3>HTML</h3>
+                    <pre><code class="html hljs" data-trim>
+<!-- menu -->
+<ul class="nav">
+  <li>
+
+    <a href="">link</a>
+
+      <!-- submenu -->
+    <ul>
+      <li>
+        <a href="">dropdown link</a>
+      </li>
+    </ul>
+
+  </li>
+</ul>
+					</code></pre>
+                </div>
+                <div class="separator"></div>
+                <div>
+                    <h3>SCSS</h3>
+                    <pre><code class="scss hljs" data-trim data-noescape>
+// menu
+<i>.nav</i> {
+  <i>> li</i> {
+    <i>> a</i>:hover {
+      background-color: red;
+    }
+    // submenu
+    <i>> ul</i> {
+      background-color: #fff;
+      <i>> li > a</i>:hover {
+        background-color: black;
+      }
+    }
+  }
+}
+					</code></pre>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h1>Modules</h1>
+            <img src="img/foundation.png" class="img-reset" alt="">
+        </section>
+        <section>
+            <h6>What we use today</h6>
+            <img src="img/preprocessors-logos.png" class="img-reset" alt="">
+        </section>
+        <section data-transition="convex">
+            <h1>Preprocessors problems</h1>
+        </section>
+        <section class="with-bg-image-reset" data-background="img/waiting.gif" data-background-position="50% 100%" data-background-size="auto 25%">
+            <ul>
+                <li>Additional setup is needed to make a compiler work</li>
+                <li>Any change require recompilation</li>
+                <li>Compilation takes time ⏰</li>
+            </ul>
+            <div class="two-images">
+                <img src="img/preprocessor-setup.png" class="img-reset" alt="">
+                <img src="img/preprocessor-compile.png" class="img-reset" alt="">
+            </div>
+        </section>
+        <section>
+            <ul>
+                <li>Each has own syntax! 💩</li>
+            </ul>
+            <div class="two-syntaxes">
+            <pre><code class="scss hljs" data-trim data-noescape>
+// Sass
+$color: #f00;
+$images: "../img";
+@mixin clearfix {
+  &:after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+}
+body {
+  color: $color;
+  background: url("#{img}/1.png");
+  @include clearfix;
+}
+					</code></pre>
+                <div class="separator"></div>
+                <pre><code class="less hljs" data-trim data-noescape>
+// Less
+@color: #f00;
+@images: "../img";
+.clearfix() {
+  &:after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+}
+body {
+  color: @color;
+  background: url("@{img}/1.png");
+  .clearfix;
+}
+					</code></pre>
+            </div>
+        </section>
+        <section>
+            <ul>
+                <li>Source maps are required</li>
+                <li>Debug might be hard (or buggy)</li>
+            </ul>
+            <img style="max-width: 80%;" src="img/debug-fail.gif" class="img-reset" alt="">
+        </section>
+        <section>
+            <h6>
+                <span class="check-mark">We want</span>
+            </h6>
+            <ul>
+                <li>Variables</li>
+                <li>Mixins</li>
+                <li>Nesting</li>
+                <li>Modules</li>
+                <li>Selector helpers, color functions</li>
+            </ul>
+            <hr>
+            <h6>
+                <span class="uncheck-mark">We don't want</span>
+            </h6>
+            <ul>
+                <li>Additional setup</li>
+                <li>Compilation</li>
+                <li>Not standardized syntax</li>
+                <li>Hard debug</li>
+            </ul>
+        </section>
+        <section data-background="img/question-mark.png" data-background-position="1% 95%" data-background-size="10%"
+                 data-transition="convex">
+            <h1>Does CSS have all this today?</h1>
+            <p>
+                Let's take a look
+            </p>
+        </section>
+        <section data-background="img/question-mark.png" data-background-position="1% 95%" data-background-size="10%"
+                 data-transition="convex">
+            <h2>What we want?</h2>
+            <h1>Variables</h1>
+        </section>
+        <section>
+            <h3>First CSS variable <u>currentColor</u></h3>
+            <div class="two-syntaxes">
+            <pre><code class="scss hljs" data-trim data-noescape>
+:root { color: red; }
+i {border: 1px solid <i>currentColor</i>;}
+					</code></pre>
+                <div class="separator equal"></div>
+                <pre><code class="css hljs" data-trim data-noescape>
+:root { color: red; }
+i {border: 1px solid <i>red</i>;}
+					</code></pre>
+            </div>
+
+            <div class="two-syntaxes">
+            <pre><code class="html hljs" data-trim>
+<p>
+    Usual text: Lorem ipsum with
+    <a href="">link1</a> and
+    <a href="">link2</a>
+</p>
+
+<p class="disclaimer">
+    Disclaimer: I created images
+    <a href="">1.png</a> and
+    <a href="">2.png</a>
+    but they are not meant to
+    represent any specific company
+</p>
+					</code></pre>
+                <div class="separator"></div>
+                <pre><code class="scss hljs" data-trim data-noescape>
+p {color: #333;}
+
+p.disclaimer {color: red;}
+
+/* Set links to reuse currentcolor
+    for color and border-color */
+p a {
+  text-decoration: none;
+  color: currentcolor;
+  border-bottom:
+    1px dashed currentcolor;
+}
+					</code></pre>
+            </div>
+
+            <img src="img/currentColor.png" alt="" class="img-reset"/>
+            <!--http://codepen.io/malyw/pen/NbNpdN-->
+
+        </section>
+        <section data-background="img/css-yes.png" data-background-position="5% 95%" data-background-size="20%">
+            <h1>
+                <a href="https://www.w3.org/TR/css-variables/">
+                    CSS custom properties
+                </a>
+                <br>
+                (a.k.a. CSS variables)
+            </h1>
+        </section>
+        <section data-background="img/css-variables-support.png" data-background-size="contain">
+        </section>
+        <section>
+            <h2>
+                <a href="https://developer.microsoft.com/en-us/microsoft-edge/platform/status/csscustompropertiesakacssvariables/?q=variab">
+                    Good news!
+                </a>
+            </h2>
+            <img src="img/edge-in-progress2.png" alt="" class="img-reset"/>
+        </section>
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            <h3>Syntax</h3>
+            <pre><code class="css hljs" data-trim data-noescape>
+/* declaration */
+--VAR_NAME: &lt;declaration-value&gt;;
+/* usage */
+var(--VAR_NAME)
+					</code></pre>
+            <p><br></p>
+            <pre><code class="css hljs" data-trim data-noescape>
+/* root element selector (global scope), e.g. &lt;html&gt; */
+:root {
+  /* CSS variables declarations */
+  <i>--main-color</i>: #ff00ff;
+  <i>--main-bg</i>: rgb(200, 255, 255);
+}
+
+body {
+  /* use the variable */
+  color: <i>var(--main-color)</i>;
+}
+					</code></pre>
+            <p>
+                Didn't expect the "--"? There was <a href="http://www.xanthir.com/blog/b4KT0">a reason</a>.
+            </p>
+        </section>
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            <h2>Variable examples</h2>
+            <pre><code class="css hljs" data-trim data-noescape>
+:root{
+    --main-color: #4d4e53;
+    --main-bg: rgb(255, 255, 255);
+    --logo-border-color: rebeccapurple;
+
+    --header-height: 68px;
+    --content-padding: 10px 20px;
+
+    --base-line-height: 1.428571429;
+    --transition-duration: .35s;
+    --external-link: "external link";
+    --margin-top: calc(2vh + 20px);
+}
+					</code></pre>
+            <h2>And even..</h2>
+            <pre><code class="css hljs" data-trim data-noescape>
+:root{
+    --foo: if(x > 5) this.width = 10;
+}
+					</code></pre>
+        </section>
+        <section data-background="img/by-default.gif" data-background-position="100% 0" data-background-size="20% auto">
+            <h2>Variable Defaults</h2>
+            <p>
+                If the variable has already been assigned to
+                <br>
+                - it won’t be re-assigned
+            </p>
+            <pre><code class="css hljs" data-trim data-noescape>
+p {
+ <i>--p-margin</i>: 5px;
+ margin: var(<i>--p-margin</i>, 0 0 10px); /* 5px */
+}
+					</code></pre>
+            <p>
+                If it doesn’t have a value yet
+                <br>
+                - it will be given one.
+            </p>
+            <pre><code class="css hljs" data-trim data-noescape>
+p {
+ margin: var(--p-margin, <i>0 0 10px</i>);/* 0 0 10px */
+}
+					</code></pre>
+        </section>
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            <h2>Reassign vars from others</h2>
+            <pre><code class="css hljs" data-trim data-noescape>
+.block {
+  --block-text: 'This is my block';
+  --block-highlight-text: var(--block-text)' with highlight';
+}
+
+.block__highlight:before {
+  content: var(--block-highlight-text);
+    /*This is my block with highlight*/
+}
+					</code></pre>
+        </section>
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            <h2>Reset/inherit values</h2>
+            <p>
+                As for any other CSS property,
+                you can apply <b>"initial"</b> and <b>"inherit"</b> values
+            </p>
+            <pre><code class="css hljs" data-trim data-noescape>
+.with-reset {
+  --bgcolor: initial;/* RESETS THE VALUE <i>for the scope</i> */
+
+  --color: green;/* CHANGES THE VALUE */
+
+  --border: inherit;/* INHERITS THE VALUE <i>for the scope</i> */
+}
+					</code></pre>
+        </section>
+        <section>
+            Usage example: <a href="http://codepen.io/malyw/pen/KzZXRq?editors=0100">emulating non existing CSS rule</a>
+            <img src="img/emulate-missed-property.gif" alt="" class="img-reset"/>
+        </section>
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            <h2>Scopes</h2>
+            <pre><code class="html hljs" data-trim>
+<div class="block">
+  My block is
+  <div class="block block__highlight">awesome</div>
+</div>
+					</code></pre>
+            <p>Follow usual CSS cascade rules:</p>
+            <pre><code class="css hljs" data-trim data-noescape>
+:root{
+    --global-var: 1em;
+    /* <i>--global-var</i> is available globally */
+}
+.block {
+    --block-var: 1.5em;
+    /* <i>--global-var and --block-var</i> are available */
+}
+
+.block__highlight {
+    --block-highlight-var: 2rem;
+    /* <i>--global-var , --block-var and --block-highlight-var</i> */
+
+    font-size: var(--block-highlight-font-size);
+}
+					</code></pre>
+        </section>
+        <section data-background="img/diff.jpg" data-background-position="50% 0%" data-background-size="cover">
+            <span class="black-bold-outline">
+                CSS / preprocessors scopes are different
+            </span>
+            <div class="two-syntaxes">
+            <pre class="block-black-outline"><code class="scss hljs" data-trim data-noescape>
+/* SCSS: scope depends on
+ the selectors
+ <b>structure in the code</b>
+ "{}" define scope */
+<i>$font-size</i>: 20px;
+
+.block{
+  <i>$font-size</i>: 42px;
+  /* font-size: <i>$font-size</i>; */
+}
+
+.block__highlight{
+  font-size: <i>$font-size</i>;
+}
+					</code></pre>
+                <div class="separator"></div>
+                <pre class="block-black-outline"><code class="css hljs" data-trim data-noescape>
+/* CSS: scope depends
+ on the <b>current HTML DOM structure</b>
+*/
+:root{
+  <i>--font-size</i>: 20px;
+}
+
+.block{
+  <i>--font-size</i>: 42px;
+}
+
+.block__highlight{
+  font-size: <i>var(--font-size)</i>;
+}
+					</code></pre>
+            </div>
+
+            <div class="two-syntaxes">
+                <div>
+                    <img class="block-black-outline" style="max-width: 45%;" src="img/scope-sass.png" alt=""
+                         class="img-reset"/>
+                </div>
+                <div class="separator"></div>
+                <div>
+                    <img class="block-black-outline" src="img/scope-css.png" alt="" class="img-reset"/>
+                </div>
+            </div>
+        </section>
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            Scope examples
+            <pre><code class="css hljs" data-trim>
+/* Global scope (usually &lt;html/&gt;) */
+:root {
+    --bg: #f00;
+}
+
+/* var is reassigned when media query is applied */
+@media screen and (min-width: 800px) {
+  :root { --bg: #f00; }
+}
+
+/* and on body hover is reassigned for &lt;body/&gt; */
+/* (but will be the same for &lt;html/&gt; as it's a parent scope) */
+body:hover {
+  --bg: #ff0;
+}
+					</code></pre>
+        </section>
+        <section data-background="img/bg/rubik-cube.svg" data-background-size="contain"
+                 data-background-position="100% 100%">
+            <section>
+                <h1>Variables are alive🖥</h1>
+                <pre><code class="scss hljs" data-trim data-noescape>
+:root {
+    --screen-category: 'desktop';
+}
+
+@media screen and (max-width: 1024px) {
+    :root { --screen-category: 'tablet'; }
+}
+
+@media screen and (max-width: 640px) {
+    :root { --screen-category: 'phone'; }
+}
+
+body:after {
+    content: '--screen-category : 'var(--screen-category);
+}
+					</code></pre>
+                <h2>
+                    <a class="black-outline" href="./demos/no-preprocessor-css-variables-media/">Demo</a>
+                </h2>
+            </section>
+            <section class="with-bg-image-reset" data-background="img/css-variables-media.gif" data-background-size="contain">
+
+            </section>
+        </section>
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            <h2>Operators and calculations</h2>
+            <pre><code class="css hljs" data-trim data-noescape>
+:root {
+  --block-font-size: <i>1rem</i>;
+}
+
+.block__highlight {
+  /* DOESN'T WORK */
+  font-size: <i>var(--block-font-size)*1.5</i>;
+}
+					</code></pre>
+            <div class="fragment">
+                <p>CSS &nbsp; calc(🤘) &nbsp; to the rescue (for values)!</p>
+                <pre><code class="css hljs" data-trim data-noescape>
+:root {
+  --block-font-size: <i>1rem</i>;
+}
+
+.block__highlight {
+  /* WORKS */
+  font-size: <i>calc(var(--block-font-size)*1.5)</i>;
+}
+					</code></pre>
+            </div>
+        </section>
+        <section>
+            <section data-background="img/bg/rubik-cube.svg" data-background-size="contain"
+                     data-background-position="100% 100%">
+                <h1>Demo 🖥</h1>
+                <h3>
+                    <a class="black-outline" href="./demos/no-preprocessor-css-colors-from-custom-props/">Generate colors from CSS
+                        custom properties (R,G,B)</a>
+                </h3>
+            </section>
+            <section class="with-bg-image-reset" data-background="img/generated-colors.gif" data-background-size="contain"></section>
+        </section>
+        <section data-background="img/css-to-js.png" data-background-position="1% 99%" data-background-size="20% auto">
+            <h1>CSS to JS: without</h1>
+            <p>
+                To pass variables from CSS to JS we used to use
+                <a href="https://blog.hospodarets.com/passing_data_from_sass_to_js">workarounds or hacks</a>
+                to write JSON in CSS
+            </p>
+            <pre><code class="scss hljs" data-trim data-noescape>
+.breakpoints-data {
+    font-family: <i>'{"phone":"480px","tablet":"800px"}'</i>;
+}
+					</code></pre>
+        </section>
+        <section data-background="img/css-to-js.png" data-background-position="1% 99%" data-background-size="20% auto">
+            <h1>CSS to JS: with</h1>
+            <pre><code class="scss hljs" data-trim data-noescape>
+.breakpoints-data {
+  --phone: 480px;
+  --tablet: 800px;
+}
+					</code></pre>
+            <h2>JS</h2>
+            <pre><code class="js hljs" data-trim data-noescape>
+const breakpointsData = document.querySelector('.breakpoints-data');
+
+// GET
+const phone = getComputedStyle(breakpointsData)
+    <i>.getPropertyValue('--phone')</i>;
+
+// SET
+breakpointsData.style
+    <i>.setProperty('--phone', 'custom')</i>;
+					</code></pre>
+        </section>
+        <section>
+            <section data-background="img/bg/rubik-cube.svg" data-background-size="contain"
+                     data-background-position="100% 100%">
+                <h1>Demo 🖥</h1>
+                <h3>
+                    <a class="black-outline" href="./demos/no-preprocessor-css-3d-cube/">Rotate page elements using CSS variables</a>
+                </h3>
+            </section>
+            <section class="with-bg-image-reset" data-background="img/css-js2.gif" data-background-size="contain"></section>
+        </section>
+        <!--<section class="with-bg-image-reset" data-background="img/css-js.gif" data-background-size="contain">-->
+        <!--&lt;!&ndash;<a href="http://codepen.io/malyw/pen/grgJJJ?editors=0010">Codepen</a>&ndash;&gt;-->
+        <!--</section>-->
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            <h2>Check if supported</h2>
+            <h5>CSS</h5>
+            <pre><code class="css hljs" data-trim data-noescape>
+@supports ( (--a: 0)) {
+    /* supported */
+}
+
+@supports ( not (--a: 0)) {
+    /* not supported */
+}
+					</code></pre>
+            <h6>JS</h6>
+            <pre><code class="js hljs" data-trim data-noescape>
+const isSupported = window.CSS && window.CSS.supports &&
+    <i>window.CSS.supports('--a', 0)</i>;
+
+/* e.g. load a CSS file generated by a preprocessor */
+if(!isSupported){
+    removeCss('css-custom-properties.css')
+    loadCss('without-css-custom-properties.css');
+}
+					</code></pre>
+        </section>
+        <section data-background="img/why.png" data-background-position="1% 99%" data-background-size="20% auto">
+            <h2>Why else CSS Custom Props are better?</h2>
+        </section>
+        <section>
+            <section data-background="img/bg/rubik-cube.svg" data-background-size="30%"
+                     data-background-position="100% 0%">
+                <h2>Demo 🖥</h2>
+                <p class="black-outline">
+                    <a href="/demos/no-preprocessor-css-custom-props-theme-switcher/">Color schema switcher
+                        based on CSS custom property values</a></p>
+
+                <p><br></p>
+                <p class="black-outline">Cannot be done by a preprocessor without generating additional code</p>
+            </section>
+            <section class="with-bg-image-reset" data-background="img/theme-switcher.gif" data-background-size="contain"></section>
+        </section>
+        <section data-background="img/question-mark.png" data-background-position="1% 95%" data-background-size="10%"
+                 data-transition="convex">
+            <h2>What do we want?</h2>
+            <h1>Mixins</h1>
+        </section>
+        <section data-background="img/css-yes.png" data-background-position="5% 95%" data-background-size="20%">
+            <h2>
+                <a href="https://tabatkins.github.io/specs/css-apply-rule/">
+                    CSS Custom Sets of Properties and @apply rule
+                </a>
+                <br>
+                (a.k.a. CSS mixins)
+            </h2>
+        </section>
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            <p>
+                Custom Property:
+            </p>
+            <pre><code class="css hljs" data-trim data-noescape>
+:root{
+    /* --property: value; */
+
+    --VAR: &lt;declaration-value&gt;;
+}
+					</code></pre>
+            <div class="fragment">
+                <p>
+                    Custom properties can hold more than just values- they can also be used to hold sets of
+                    declarations:
+                </p>
+                <pre><code class="css hljs" data-trim data-noescape>
+:root{
+    /*
+        --property: {
+            property1: value1;
+            property...: value...;
+        }
+    */
+
+    --MIXIN: {
+        /* style declaration 1 */
+        /* style declaration ... */
+    };
+}
+					</code></pre>
+            </div>
+        </section>
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            <h1>Syntax</h1>
+            <pre><code class="css hljs" data-trim data-noescape>
+:root {
+    --pink-schema: {
+        color: #6A8759;
+        background-color: #F64778;
+    }
+}
+
+body{
+  @apply --pink-schema;
+}
+					</code></pre>
+            <p>
+                @apply rule takes these sets of declarations and inlines them in another style rule
+            </p>
+        </section>
+        <section data-background="img/what-how-why.png" data-background-position="5% 5%" data-background-size="20%">
+            <h2>Reasons to use</h2>
+            <ul>
+                <li>
+                    Put reusable bunches of styles into separate entities
+                </li>
+                <li>
+                    Avoid code duplication
+                </li>
+                <li>
+                    Apply changes in a central place
+                </li>
+            </ul>
+            <h2>Behavior</h2>
+            <p>
+                Everything from CSS variables (scopes, usage from JS etc.) is applicable for Custom Sets of Properties
+            </p>
+        </section>
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            <h2>Examples</h2>
+            <div class="two-syntaxes">
+                <div>
+                    <pre><code class="css hljs" data-trim data-noescape>
+:root {
+  --clearfix: {
+    display: table;
+    clear: both;
+    content: '';
+  };
+}
+
+.clearfix:after{
+  @apply --clearfix;
+}
+					</code></pre>
+                </div>
+                <div class="separator"></div>
+                <div>
+                    <pre><code class="css hljs" data-trim data-noescape>
+:root {
+  --overflow-ellipsis: {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  };
+}
+
+.overflow-box{
+  @apply --overflow-ellipsis;
+}
+					</code></pre>
+                </div>
+            </div>
+            <div class="two-syntaxes">
+                <div>
+                    <img src="/img/clearfix.jpg" style="border-radius: 30px;">
+                </div>
+                <div class="separator"></div>
+                <div>
+                    <img src="/img/overflow-ellipsis.png" style="border-radius: 10px;">
+                </div>
+            </div>
+        </section>
+        <section data-background="img/bg/rubik-cube.svg" data-background-size="contain"
+                 data-background-position="100% 100%">
+            <section>
+                <h2>
+                    <h1>Demo 🖥</h1>
+                    <p>
+                        <a class="black-outline" href="./demos/no-preprocessor-css-triangle-mixin/">CSS Triangle Mixin</a>
+                    </p>
+                </h2>
+            </section>
+            <section data-background="img/triangle.png" data-background-size="20%"
+                     data-background-position="0% 100%">
+                <p>
+                    <a class="black-outline" href="./demos/no-preprocessor-css-triangle-mixin/">CSS Triangle Mixin</a>
+                </p>
+                <pre><code class="html hljs" data-trim>
+<div class="triangle-to-bottom"></div>
+					</code></pre>
+                <pre><code class="css hljs" data-trim data-noescape>
+:root {
+  --triangle-to-bottom-size: 50px;
+  --triangle-to-bottom-color: #007bff;
+
+  --triangle-to-bottom: {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: var(--triangle-to-bottom-size)
+                    var(--triangle-to-bottom-size)
+                    0 var(--triangle-to-bottom-size);
+    border-color: var(--triangle-to-bottom-color)
+                    transparent transparent transparent;
+  };
+}
+					</code></pre>
+                <pre><code class="css hljs" data-trim data-noescape>
+.triangle-to-bottom {
+  @apply --triangle-to-bottom;
+}
+					</code></pre>
+            </section>
+        </section>
+        <section data-background="img/code-icon.png" data-background-position="1% 1%" data-background-size="10%">
+            <h3>Problem- variables cannot be passed</h3>
+            <pre><code class="css hljs" data-trim data-noescape>
+:root {
+    --triangle-to-bottom-size: 50px;
+
+    --triangle-to-bottom: {
+        /* STYLES */
+        border-bottom-width: var(--triangle-to-bottom-size);
+    };
+}
+
+.triangle-to-bottom {
+    --triangle-to-bottom-size: 8px;
+
+    @apply --triangle-to-bottom;
+    /*  but still 50px size is applied for border-bottom-width */
+}
+					</code></pre>
+            <p>Discussion to change this behavior is in progress</p>
+        </section>
+        <section data-background="img/lea-verou.png" data-background-position="1% 95%" data-background-size="20%">
+            <h2>Mixins for CSS vendor prefixes?</h2>
+            <div class="fragment">
+                <p>
+                    <a href="http://lea.verou.me/2016/09/autoprefixing-with-css-variables/">
+                        Lea Verou's idea:
+                    </a>
+                </p>
+                <pre><code class="css hljs" data-trim data-noescape>
+* {/* has zero specificity */
+  /* prevents the property inheritance from outer scopes */
+  --clip-path: initial;
+
+  -webkit-clip-path: var(--clip-path);
+  clip-path: var(--clip-path);
+}
+					</code></pre>
+                <p>
+                    Every time you need clip-path:
+                </p>
+                <pre><code class="css hljs" data-trim data-noescape>
+header {/* any selector like this overrides the "*" */
+  /* assign the prop value for the scope */
+  --clip-path: polygon(0% 0%, 100% 0%, 100% 100%%, 0% 100%);
+}
+					</code></pre>
+            </div>
+        </section>
+        <section data-background="img/nest.jpg" data-background-size="26%" data-background-position="0 100%"
+                 data-transition="convex">
+            <h2>What we need?</h2>
+            <h1>Nesting</h1>
+        </section>
+        <section>
+            <h3>What we want to avoid?</h3>
+            <ul>
+                <li>CSS code duplication in selectors</li>
+                <li>Bad readability of the code</li>
+            </ul>
+            <pre class="no-sign"><code class="css hljs" data-trim data-noescape>
+table.colortable td {
+  text-align:center;
+}
+table.colortable td.upper {
+  text-transform:uppercase;
+}
+table.colortable td:first-child,
+table.colortable td:first-child+td {
+  border:1px solid #000;
+}
+					</code></pre>
+        </section>
+        <section data-background="img/css-yes.png" data-background-position="1% 95%" data-background-size="20%">
+            <h2>
+                Tab Atkins'
+                <a href="http://tabatkins.github.io/specs/css-nesting/">CSS Nesting spec proposal</a>
+            </h2>
+            <h4>Syntax is close to preprocessors</h4>
+            <pre><code class="css hljs" data-trim data-noescape>
+/* Dropdown menu on hover */
+ul {
+  /* direct nesting (& MUST be the first part of selector)*/
+  & > li {
+    color: #000;
+
+    & > ul { display: none; }
+
+    &:hover {
+      color: #f00;
+
+      & > ul { display: block; }
+    }
+  }
+}
+</code></pre>
+        </section>
+        <section>
+            <h4>The Nesting At-Rule: '@nest' for complex cases</h4>
+            <p>
+                @nest &lt; selector (MUST CONTAIN a nesting selector '&') &gt;
+            </p>
+            <div class="two-syntaxes">
+                <pre><code class="scss hljs" data-trim data-noescape>
+.foo {
+  color: black;
+
+
+  @nest body.loading & {
+    opacity: 0.5;
+  }
+
+  @nest :not(&) {
+    color: white;
+  }
+}
+					</code></pre>
+                <div class="separator arrow-right"></div>
+                <pre><code class="css hljs" data-trim data-noescape>
+.foo {
+  color: black;
+}
+
+body.loading .foo {
+  opacity: 0.5;
+}
+
+:not(.foo) {
+  color: white;
+
+}
+					</code></pre>
+            </div>
+        </section>
+        <section data-background="img/migration.jpg" data-background-position="50% 100%" data-background-size="20%">
+            <h4>Migration is easy</h4>
+            <ul>
+                <li>
+                    Nesting selector syntax is very close to Sass
+                </li>
+                <li>
+                    Complex nesting can be done using @nest at-rule
+                </li>
+                <li>
+                    media expression etc. are nested:
+                </li>
+            </ul>
+            <div class="two-syntaxes">
+                <pre><code class="scss hljs" data-trim data-noescape>
+a {
+    @media (min-width: 30em) {
+        color: yellow;
+    }
+}
+					</code></pre>
+                <div class="separator arrow-right"></div>
+                <pre><code class="css hljs" data-trim data-noescape>
+@media (min-width: 30em) {
+    a {
+        color: yellow
+    }
+}
+					</code></pre>
+            </div>
+        </section>
+        <section class="with-bg-image-reset" data-background="img/modules.gif" data-background-position="0% 100%" data-background-size="35%"
+                 data-transition="convex">
+            <h2>What we wish?</h2>
+            <h1>Modules</h1>
+        </section>
+        <section data-background="img/10-years.png" data-background-position="0% 98%" data-background-size="35%">
+            The @import CSS at-rule is used to import style rules from other style sheets.
+            <h3>It is available in all browsers since IE 5.5!</h3>
+
+        </section>
+        <section data-background="img/css-imports.png" data-background-size="contain">
+        </section>
+        <section data-background="img/css-multi-import.png" data-background-size="25%" data-background-position="0 100%" style="text-align: left;">
+            <ul>
+                <li>
+                    <h3>Why we didn't use this before?</h3>
+                </li>
+            </ul>
+            <p>
+                Bugs in old browsers with the order of inclusion
+            </p>
+            <p>
+                Before requests didn't go in parallel
+            </p>
+            <p>
+                For HTTP1x good practice is file concatenation. <br> With coming of HTTP/2 rules will be cnanged.
+            </p>
+        </section>
+        <section>
+            <h3>Advantages for free:</h3>
+            <h2>Conditional loading</h2>
+            <pre><code class="css hljs" data-trim data-noescape>
+/* Formal syntax */
+@import [ &lt;string&gt; | &lt;url&gt; ] [&lt;media-query-list&gt;]?;
+					</code></pre>
+
+            You can easily apply media queries for different stylesheets.
+            <pre><code class="css hljs" data-trim data-noescape>
+@import url("print.css") print;
+@import "mobile.css" (max-width: 728px);
+					</code></pre>
+            <p>
+                The linked resources are loaded only when condition is met.
+            </p>
+        </section>
+        <section data-background="img/question-mark.png" data-background-position="1% 95%" data-background-size="10%">
+            <section data-background="img/so-far.png" data-background-position="1% 1%" data-background-size="35%"
+                     data-transition="convex">
+                <h2>We have</h2>
+                <ul>
+                    <li>Variables, Mixins</li>
+                    <li>Nesting and Modules</li>
+                </ul>
+                <p></p>
+                <h2>What else we want?</h2>
+                <ul>
+                    <li>
+                        Selector helpers for complex cases
+                    </li>
+                    <li>
+                        Color functions
+                    </li>
+                </ul>
+            </section>
+        </section>
+        <section data-background="img/css-selectors.jpg" data-background-position="1% 1%" data-background-size="20%">
+            <h4>
+                <a href="https://drafts.csswg.org/selectors-4/#matches">
+                    :matches
+                </a>
+                pseudo-class
+            </h4>
+            <pre><code class="css hljs" data-trim data-noescape>
+                /* SYNTAX */
+:matches( selector[, selector]* )
+					</code></pre>
+            <p>
+                A functional pseudo-class taking a selector list as its argument.
+            </p>
+
+
+            <pre><code class="css hljs" data-trim data-noescape>
+.nav:matches(.side,.top) .links:matches(:hover, :focus) {
+  color: #BADA55;
+}
+
+/* Same thing as this... */
+.nav.side .links:hover,
+.nav.top  .links:hover,
+.nav.side .links:focus,
+.nav.top  .links:focus {
+  color: #BADA55;
+}
+					</code></pre>
+        </section>
+        <section data-background="img/css-selectors.jpg" data-background-position="1% 1%" data-background-size="20%">
+            <h4>
+                <a href="https://drafts.csswg.org/css-extensions/#custom-selectors">
+                    @custom-selector
+                </a>
+            </h4>
+            <pre><code class="css hljs" data-trim>
+                /* SYNTAX */
+@custom-selector: &lt;custom-selector&gt; &lt;selector-list&gt;;
+					</code></pre>
+            <p>
+                Example:
+            </p>
+            <pre><code class="css hljs" data-trim data-noescape>
+@custom-selector :--text-inputs input[type="text"],
+input[type="password"];
+
+:--text-inputs.disabled,
+:--text-inputs[disabled] {
+    opacity: 0.5
+}
+					</code></pre>
+            <p>
+                Same as:
+            </p>
+            <pre><code class="css hljs" data-trim data-noescape>
+input[type="text"].disabled,
+input[type="password"].disabled,
+input[type="text"][disabled],
+input[type="password"][disabled] {
+    opacity: 0.5
+}
+					</code></pre>
+        </section>
+        <section data-background-position="1% 95%" data-background-size="10%"
+                 data-background-color="green" data-transition="convex">
+            <h1>
+                <a href="https://drafts.csswg.org/css-color/">Color functions</a>
+            </h1>
+            <pre><code class="css hljs" data-trim data-noescape>
+/* SYNTAX */
+color( &lt;color&gt; &lt;color-adjuster&gt;* )
+					</code></pre>
+            <ul>
+                <li>
+                    some adjusters have shortcuts
+                </li>
+                <li>
+                    adjusters can be pipped
+                </li>
+            </ul>
+            <pre><code class="css hljs" data-trim data-noescape>
+color(
+  red             /* from red */
+  blackness(+25%) /* to 25% more black than red */
+  blackness(+25%) /* to 50% more black than red */
+  blackness(-50%) /* to red again */
+  hue(+ 30deg)    /* to orange */
+  hue(- 30deg)    /* to red again */
+);
+					</code></pre>
+            <!--<p>-->
+            <!--<a href="https://cloudfour.com/thinks/building-themes-with-css4-color-features/">-->
+            <!--Article with examples-->
+            <!--</a>-->
+            <!--</p>-->
+        </section>
+        <section class="with-bg-image-reset" data-background="img/color-functions3.gif" data-background-size="contain">
+        </section>
+        <!--<section data-background-color="#0B5351">-->
+        <!--<h4>Demo 🖥</h4>-->
+        <!--<div style="width: 70%; margin: 0 auto;">-->
+        <!--<a href="http://codepen.io/malyw/pen/RGPgWL?editors=1100">-->
+        <!--<img src="img/color-adjusters3.png" alt="">-->
+        <!--</a>-->
+        <!--<img src="img/color-adjusters1.gif" alt="">-->
+        <!--<a href="http://codepen.io/malyw/pen/jrPwAJ?editors=1100">-->
+        <!--<img src="img/color-adjusters2.png" alt="">-->
+        <!--</a>-->
+        <!--</div>-->
+        <!--</section>-->
+        <section style="text-align: left;" data-background="img/question-mark.png" data-background-position="1% 95%" data-background-size="10%"
+                 data-transition="convex">
+            <h1>Better media queries!</h1>
+            <h4>Problem</h4>
+            <ul>
+                <li>
+                    The syntax is too long and they cannot be reused easily
+                </li>
+            </ul>
+            <p></p>
+            <h4>Need</h4>
+            <ul>
+                <li>
+                    A simple way to set breakpoints and reuse them
+                </li>
+            </ul>
+            <div style="text-align: center;">
+                <img src="img/responsive-design.gif" alt="">
+            </div>
+        </section>
+        <section data-background="img/css-yes.png" data-background-position="5% 95%" data-background-size="20%">
+            <h2>Custom media queries
+                <a href="https://github.com/w3c/csswg-drafts/blob/master/mediaqueries/deferred-for-level-5.txt">
+                    (MQ Level 5)
+                </a>
+            </h2>
+            <pre><code class="scss hljs" data-trim data-noescape>
+/* SYNTAX */
+@custom-media --NAME &lt;media-query-list&gt;;
+					</code></pre>
+            <p>How to use:</p>
+            <pre><code class="scss hljs" data-trim data-noescape>
+@custom-media --tablet (min-width: 800px) and (max-width: 1024px);
+
+@media (--tablet){
+    .custom-media-queries{
+        background-color: red;
+    }
+}
+					</code></pre>
+        </section>
+        <section data-background="img/css-yes.png" data-background-position="5% 95%" data-background-size="20%">
+            <h3>Media queries ranges
+                <a href="https://www.w3.org/TR/mediaqueries-4/">
+                    (MQ Level 4)
+                </a>
+            </h3>
+            Instead of:
+            <pre><code class="scss hljs" data-trim data-noescape>
+@media (min-width: 800px) and (max-width: 1024px) {
+    .media-queries-range{
+        background-color: red;
+    }
+}
+					</code></pre>
+            Use:
+            <pre><code class="scss hljs" data-trim data-noescape>
+@media (width >= 800px) and (width <= 1024px) {
+    .media-queries-range{ background-color: red; }
+}
+					</code></pre>
+            <p>
+                With custom media queries:
+            </p>
+            <pre><code class="scss hljs" data-trim data-noescape>
+@custom-media --tablet (width >= 800px) and (width <= 1024px);
+
+@media (--tablet){
+    /* STYLES */
+}
+					</code></pre>
+        </section>
+        <section style="text-align: left;" data-background="img/thinking.png" data-background-position="100% 80%"
+                 data-background-size="15%" data-transition="fade">
+            <h1>Can we Use it now?</h1>
+            <h3>Current situation</h3>
+            <ul>
+                <li>
+                    CSS variables are supported in all the modern browsers except EDGE
+                </li>
+                <li>
+                    CSS mixins work in Chrome Canary
+                </li>
+                <li>
+                    Some of other specs are integrated in various browsers, sometimes it's in beta/dev versions
+                </li>
+            </ul>
+            <p></p>
+            <h3>Should we wait for another couple years?</h3>
+        </section>
+        <section class="with-bg-image-reset" data-transition="fade" data-background="img/dance.gif">
+            <a href="http://cssnext.io/">
+                <img class="block-black-outline" style="width:80%;" src="img/cssnext-slogan.png" class="img-reset" alt="">
+
+                <img class="block-black-outline" style="background-color: #fff;width:50%;" src="img/cssnext.svg" class="img-reset" alt="">
+
+                <img class="block-black-outline" style="width:70%;" src="img/cssnext-features 2.png" class="img-reset" alt="">
+            </a>
+        </section>
+        <section data-background="img/postcss.png" data-background-size="20% auto" data-background-position="0% 100%"
+                 data-transition="fade">
+            <ul>
+                <li>PostCSS based</li>
+                <li>Includes other PostCSS plugins (vars, mixins etc.)</li>
+                <li>If you already use Autoprefixer- change is straign forward</li>
+            </ul>
+            <h3>Build setup:</h3>
+            <div class="two-syntaxes">
+                <pre><code class="js hljs" data-trim data-noescape>
+//...
+postcss: {
+  options: {
+    processors: [
+      require('autoprefixer')({
+       browsers: ['last 2 versions']
+      })
+    ]
+  },
+//...
+					</code></pre>
+                <div class="separator arrow-right"></div>
+                <pre><code class="js hljs" data-trim data-noescape>
+//...
+postcss: {
+  options: {
+    processors: [
+      require('postcss-cssnext')({
+       browsers: ['last 2 versions']
+      })
+    ]
+  },
+//...
+					</code></pre>
+            </div>
+        </section>
+        <section data-background="img/preprocessors-logos/sass-to-css.png" data-background-size="35%"
+                 data-background-position="1% 1%">
+            <h3>How to migrate</h3>
+            <div style="text-align: left;">
+                <p>
+                    1) Preprocessor 🤖
+                </p>
+                <ul style="font-size: 80%;">
+                    <li>
+                        <u>Add PostCSS</u> and <u>cssnext</u>
+                    </li>
+                </ul>
+                <p>
+                    2) Preprocessor+PostCSS+ability to use new CSS features 🙂
+                </p>
+                <ul style="font-size: 80%;">
+                    <li>
+                        <u>Change</u> vars, mixins, media queries, colors and selectors <u>to the CSS ones</u>
+                    </li>
+                    <li>
+                        <u>Disable a preprocessor</u>
+                    </li>
+                </ul>
+                <p>
+                    3) PostCSS +all the CSS additions power (with limitations) 😀
+                </p>
+                <ul style="font-size: 80%;">
+                    <li>
+                        <u>Disable cssnext</u> and <u>PostCss</u> when the browsers support everything
+                    </li>
+                </ul>
+                <p>
+                    4) You have pure CSS with everything 😎
+                </p>
+            </div>
+        </section>
+        <section>
+            <div>
+                <img style="width:60%;" src="img/preprocessors-logos/sass-vs-css.png" class="img-reset" alt="">
+            </div>
+            You still can combine preprocessor and all the mentioned CSS additions (or process them via PostCSS)
+            to use the strongest parts of the both.
+            <img src="img/preprocessors-logos/sass-plus-css.png" class="img-reset" alt="">
+        </section>
+        <section data-background="img/bg/rubik-cube.svg" data-background-size="20% auto"
+                 data-background-position="0% 100%">
+            <h2 class="black-outline">
+                Any live sites which use all these new CSS features?
+            </h2>
+            <h2>
+                <a class="black-outline" href="https://blog.hospodarets.com/">blog.hospodarets.com</a>
+            </h2>
+        </section>
+        <section class="with-bg-image-reset" data-background="img/migrated-site.gif" data-background-size="contain">
+        </section>
+        <section>
+            <h1>Conclusions</h1>
+            <ul>
+                <li>
+                    Today we have plain mostly everything we need from preprocessors in pure CSS
+                    <ul>
+                        <li>variables, mixins</li>
+                        <li>modules, nesting</li>
+                        <li>complex selectors and color functions</li>
+                    </ul>
+                </li>
+                <li>
+                    We have polyfills to make it work until it's supported in all browsers
+                </li>
+                <li>
+                    We have the real examples of migrated applications
+                </li>
+            </ul>
+        </section>
+        <section data-background="img/useful-links.png" data-background-size="20% auto"
+                 data-background-position="0% 0%">
+            <h2>How can I help / stay tuned?</h2>
+            <h3>Spec, drafts, proposals</h3>
+            <ul>
+                <li>
+                    <a href="https://github.com/w3c/csswg-drafts">CSS Working Group (WG) Editor Drafts</a>
+                </li>
+                <li>
+                    <a href="https://github.com/tabatkins/specs">Tab Atkins spec proposals</a>
+                </li>
+            </ul>
+            <p><br></p>
+            <h3>Other</h3>
+            <ul>
+                <li>
+                    <a href="http://lists.w3.org/Archives/Public/www-style/">Subscribe to CSS Working Group mailing list
+                        / RSS etc.
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/MoOx/postcss-cssnext/issues">cssnext issues</a>
+                </li>
+            </ul>
+        </section>
+        <section data-background="img/end.jpg" data-background-size="cover">
+            <h1 class="black-outline">Thank you!</h1>
+            <div>
+                <strong style="vertical-align: 35px;display: inline-block; text-align: left; font-size: 60px;">
+                    <a class="black-outline" href="https://twitter.com/malyw">@malyw</a>
+                </strong>
+                <img style="border-radius: 50%;" width="70" height="70" data-src="img/avatar.png"
+                     alt="Avatar"/>
+            </div>
+        </section>
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]
+    });
+
+    window.resetSlideBgImage = function (slide) {
+        const imageUrl = slide.getAttribute('data-background');
+        let currentSlides = document.querySelectorAll('.slide-background.present');
+        currentSlides = Array.prototype.slice.apply(currentSlides);
+        let currentSlide;
+        currentSlides.forEach((slide) => {
+            if (slide.style.backgroundImage.indexOf(imageUrl) !== -1) {
+                currentSlide = slide;
+            }
+        });
+        if (!currentSlide) return;
+        const currentTime = new Date().getTime();
+        currentSlide.style.backgroundImage = `url(${imageUrl}?${currentTime})`;
+    }
+
+    Reveal.addEventListener('slidechanged', function (event) {
+        // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+        if (event.currentSlide.classList.contains('with-bg-image-reset')) {
+            setTimeout(() => {
+                resetSlideBgImage(event.currentSlide)
+            })
+        }
+    });
+</script>
+</body>
+</html>

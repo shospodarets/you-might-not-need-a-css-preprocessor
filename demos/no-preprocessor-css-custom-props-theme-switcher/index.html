@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+
+    <title>Demo</title>
+
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./main-custom.css"/>
+</head>
+<body>
+
+<div class="is-not-supported alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only">Error:</span>
+    CSS custom properties are not supported in the current browser
+</div>
+
+<div>
+    Include CSS file with custom properties set:
+</div>
+<div class="sets">
+    <button class="btn"
+            data-set="pink-set"
+    >
+        pink-set.css
+    </button>
+    <button class="btn"
+            data-set="dark-set"
+    >
+        dark-set.css
+    </button>
+    <button class="btn"
+            data-set="default-set"
+    >
+        default-set.css
+    </button>
+</div>
+
+<div>
+    <span class="selected-set">Selected set: </span>
+</div>
+
+<link rel="stylesheet" class="link-element" href="./default-set.css"/>
+<script src="./main.js"></script>
+
+</body>
+</html>

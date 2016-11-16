@@ -1,0 +1,123 @@
+.reveal {
+  // reset
+  section img.img-reset {
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-transform: none;
+  }
+
+  // custom
+  .blink {
+    animation: 1s blinker linear infinite;
+  }
+
+  @keyframes blinker {
+    0% {
+      opacity: 1.0;
+    }
+    50% {
+      opacity: 0.0;
+    }
+    100% {
+      opacity: 1.0;
+    }
+  }
+
+  .two-syntaxes {
+    display: flex;
+    align-items: center;
+
+    > * {
+      flex: 0 0 (100%-3)/2;
+      width: (100%-3)/2;
+
+      > * {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }
+
+    .separator {
+      flex: 0 0 3%;
+      background-repeat: no-repeat;
+      background-position: 0 50%;
+      background-size: contain;
+      align-self: stretch;
+
+      &.arrow-right {
+        background-image: url(../img/code-arrow.png);
+      }
+      &.equal {
+        background-image: url(../img/equal.png);
+      }
+    }
+  }
+
+  .two-images {
+    img {
+      max-width: 45%;
+      vertical-align: top;
+
+      &:first-child {
+        margin-left: 5%;
+      }
+    }
+  }
+
+  // marks
+  .check-mark, .uncheck-mark {
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: contain;
+    padding-left: 50px;
+  }
+  .check-mark {
+    background-image: url(../img/check-mark.png);
+  }
+  .uncheck-mark {
+    background-image: url(../img/uncheck-mark.png);
+  }
+
+  .comic {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+  }
+
+  .black-outline {
+    text-shadow: -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+  }
+
+  .black-bold-outline {
+    text-shadow: -2px -2px 0 #000,
+    2px -2px 0 #000,
+    -2px 2px 0 #000,
+    2px 2px 0 #000;
+  }
+
+  .no-sign code {
+    background-image: url(/img/no-sign.png);
+    background-repeat:no-repeat;
+    background-position: 95% 50%;
+    background-size: auto 80%;
+  }
+
+  code {
+    i {
+      background-color: transparent;
+      border-bottom: 2px solid grey;
+      font-weight: bold;
+      font-style: normal;
+    }
+  }
+
+  .block-black-outline{
+    box-shadow:0 0 40px 20px #242424;
+  }
+}
+
