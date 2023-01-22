@@ -12,4 +12,4 @@ You will know:
 3) The real examples of already migrated sites
 
 Links:
-* [Presentation on SpeakerDeck](https://speakerdeck.com/malyw/you-might-not-need-a-css-preprocessor)
+* [Presentation on SpeakerDeck](https://speakerdeck.com/shospodarets/you-might-not-need-a-css-preprocessor)
